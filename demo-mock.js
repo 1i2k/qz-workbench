@@ -403,6 +403,15 @@
     var i = parsed.pathname.indexOf('/api/');
     if (i === -1) return origFetch(input, init);
 
+    // 已配置真实后端地址时，请求直接放行到该后端，快照不再参与
+    var remote = '';
+    try {
+      remote = localStorage.getItem('qz-api-base') || '';
+    } catch (e) {
+      remote = '';
+    }
+    if (remote) return origFetch(input, init);
+
     var path = parsed.pathname.slice(i + 5);
     var method = ((init && init.method) || (input && input.method) || 'GET').toUpperCase();
     var query = parsed.searchParams;
@@ -420,13 +429,22 @@
   // ---------- 演示徽标 ----------
   function mountBadge() {
     if (document.getElementById('demo-snapshot-badge')) return;
+    var remote = '';
+    try {
+      remote = localStorage.getItem('qz-api-base') || '';
+    } catch (e) {
+      remote = '';
+    }
     var el = document.createElement('div');
     el.id = 'demo-snapshot-badge';
-    el.textContent = '演示快照 · GitHub Pages';
-    el.title = '当前为静态数据快照版本，点击可隐藏提示';
+    el.textContent = remote ? '真实后端 · 实时计算' : '演示快照 · GitHub Pages';
+    el.title = remote
+      ? '数据来自 ' + remote + '（本机真实后端），点击可隐藏提示'
+      : '当前为静态数据快照版本，点击可隐藏提示';
     el.style.cssText =
-      'position:fixed;right:14px;bottom:14px;z-index:99999;background:rgba(20,110,96,.92);' +
-      'color:#fff;font:12px/1.4 "Microsoft YaHei",system-ui,sans-serif;padding:6px 12px;' +
+      'position:fixed;right:14px;bottom:14px;z-index:99999;background:' +
+      (remote ? 'rgba(53,112,90,.94)' : 'rgba(20,110,96,.92)') +
+      ';color:#fff;font:12px/1.4 "Microsoft YaHei",system-ui,sans-serif;padding:6px 12px;' +
       'border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;' +
       'letter-spacing:.5px;user-select:none;';
     el.onclick = function () {
