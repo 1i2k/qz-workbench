@@ -1,16 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#146e60" />
-    <title>质析 · Quality Workbench</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <script src="./demo-mock.js?v=20261109155518"></script>
-    <script type="module" crossorigin src="./app.js?v=20261109155518"></script>
-    <link rel="stylesheet" crossorigin href="./app.css?v=20261109155518">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>质析 Quality Workbench · 质量智能分析平台</title>
+<link rel="icon" href="./favicon.svg" />
+<link rel="stylesheet" href="./app.css" />
+<style>
+.dashboard-trend{overflow:hidden}
+.dashboard-trend svg{display:block;width:auto;height:220px;max-width:100%;margin:0 auto}
+.calendar-facts{max-width:760px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>window.__QZ_DATA__ = {"id":"15d92135c14d4a7d8b2e5a629a5a7dff","overview":{"dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","first_attempt_count":11200,"retest_count":735,"overall_yield":0.9344,"by_product":[{"group_value":"A","current_yield":0.9125,"previous_yield":null,"delta_pp":null,"current_inspected":5600,"current_passed":5110},{"group_value":"B","current_yield":0.95625,"previous_yield":null,"delta_pp":null,"current_inspected":5600,"current_passed":5355}],"daily":[{"event_date":"2026-10-12","inspected":704,"passed":671,"yield":0.953125},{"event_date":"2026-10-13","inspected":768,"passed":727,"yield":0.9466145833333334},{"event_date":"2026-10-14","inspected":832,"passed":794,"yield":0.9543269230769231},{"event_date":"2026-10-15","inspected":736,"passed":689,"yield":0.936141304347826},{"event_date":"2026-10-16","inspected":896,"passed":860,"yield":0.9598214285714286},{"event_date":"2026-10-17","inspected":800,"passed":757,"yield":0.94625},{"event_date":"2026-10-18","inspected":864,"passed":822,"yield":0.9513888888888888},{"event_date":"2026-10-19","inspected":736,"passed":676,"yield":0.9184782608695652},{"event_date":"2026-10-20","inspected":832,"passed":764,"yield":0.9182692307692307},{"event_date":"2026-10-21","inspected":768,"passed":693,"yield":0.90234375},{"event_date":"2026-10-22","inspected":864,"passed":789,"yield":0.9131944444444444},{"event_date":"2026-10-23","inspected":800,"passed":735,"yield":0.91875},{"event_date":"2026-10-24","inspected":704,"passed":660,"yield":0.9375},{"event_date":"2026-10-25","inspected":896,"passed":828,"yield":0.9241071428571429}],"window_start":"2026-10-19","window_end_exclusive":"2026-10-26"},"cost":{"dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","window_start":"2026-10-19","window_end_exclusive":"2026-10-26","prices":{"scrap_price":100.0,"rework_price":20.0},"scrap_count":455,"rework_count":455,"scrap_cost":45500.0,"rework_cost":9100.0,"total_cost":54600.0,"daily":[{"date":"2026-10-19","cost":7200.0},{"date":"2026-10-20","cost":8160.0},{"date":"2026-10-21","cost":9000.0},{"date":"2026-10-22","cost":9000.0},{"date":"2026-10-23","cost":7800.0},{"date":"2026-10-24","cost":5280.0},{"date":"2026-10-25","cost":8160.0}],"by_operation":[{"group_value":"S2","cost":40080.0},{"group_value":"S1","cost":14520.0}],"by_equipment":[{"group_value":"E2","cost":40080.0},{"group_value":"E1","cost":14520.0}],"note":"报废单价 100 元/件，返工单价 20 元/次。成本按窗口内首检 FAIL 件数与复测次数估算，可实时调整单价重算。"},"spcA":{"status":"ok","dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","product_id":"A","operation_id":null,"equipment_id":null,"window_start":"2026-10-19","window_end_exclusive":"2026-10-26","points":[{"date":"2026-10-19","inspected":368,"passed":323,"yield":0.8777,"ucl":0.9288,"lcl":0.8262,"out_of_control":false,"above":false},{"date":"2026-10-20","inspected":416,"passed":364,"yield":0.875,"ucl":0.9257,"lcl":0.8293,"out_of_control":false,"above":false},{"date":"2026-10-21","inspected":384,"passed":328,"yield":0.8542,"ucl":0.9277,"lcl":0.8273,"out_of_control":false,"above":false},{"date":"2026-10-22","inspected":432,"passed":376,"yield":0.8704,"ucl":0.9248,"lcl":0.8302,"out_of_control":false,"above":false},{"date":"2026-10-23","inspected":400,"passed":351,"yield":0.8775,"ucl":0.9267,"lcl":0.8283,"out_of_control":false,"above":false},{"date":"2026-10-24","inspected":352,"passed":319,"yield":0.9062,"ucl":0.9299,"lcl":0.8251,"out_of_control":false,"above":false},{"date":"2026-10-25","inspected":448,"passed":396,"yield":0.8839,"ucl":0.924,"lcl":0.831,"out_of_control":false,"above":false}],"p_bar":0.8775,"total_inspected":2800,"in_control":true,"out_count":0,"out_points":[],"rules":[],"note":"P 控制图：中心线为窗口平均一次通过率，控制限按每日样本量 ±3σ。"},"spcB":{"status":"ok","dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","product_id":"B","operation_id":null,"equipment_id":null,"window_start":"2026-10-19","window_end_exclusive":"2026-10-26","points":[{"date":"2026-10-19","inspected":368,"passed":353,"yield":0.9592,"ucl":0.9906,"lcl":0.9294,"out_of_control":false,"above":false},{"date":"2026-10-20","inspected":416,"passed":400,"yield":0.9615,"ucl":0.9888,"lcl":0.9312,"out_of_control":false,"above":false},{"date":"2026-10-21","inspected":384,"passed":365,"yield":0.9505,"ucl":0.99,"lcl":0.93,"out_of_control":false,"above":false},{"date":"2026-10-22","inspected":432,"passed":413,"yield":0.956,"ucl":0.9883,"lcl":0.9317,"out_of_control":false,"above":false},{"date":"2026-10-23","inspected":400,"passed":384,"yield":0.96,"ucl":0.9894,"lcl":0.9306,"out_of_control":false,"above":false},{"date":"2026-10-24","inspected":352,"passed":341,"yield":0.9688,"ucl":0.9913,"lcl":0.9287,"out_of_control":false,"above":false},{"date":"2026-10-25","inspected":448,"passed":432,"yield":0.9643,"ucl":0.9878,"lcl":0.9322,"out_of_control":false,"above":false}],"p_bar":0.96,"total_inspected":2800,"in_control":true,"out_count":0,"out_points":[],"rules":[],"note":"P 控制图：中心线为窗口平均一次通过率，控制限按每日样本量 ±3σ。"},"alerts":{"dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","window_start":"2026-10-19","window_end_exclusive":"2026-10-26","baseline_start":"2026-10-12","thresholds":{"critical_pp":85.0,"warning_pp":95.0,"drop_pp":5.0},"alert_count":1,"alerts":[{"product_id":"A","operation_id":"S1","equipment_id":"E1","current_yield":0.9543,"baseline_yield":0.9443,"delta_pp":1.0,"current_inspected":700,"severity":"ok","message":"一次通过率 95.4%，处于正常范围"},{"product_id":"A","operation_id":"S1","equipment_id":"E2","current_yield":0.9557,"baseline_yield":0.9471,"delta_pp":0.9,"current_inspected":700,"severity":"ok","message":"一次通过率 95.6%，处于正常范围"},{"product_id":"A","operation_id":"S2","equipment_id":"E1","current_yield":0.9557,"baseline_yield":0.9486,"delta_pp":0.7,"current_inspected":700,"severity":"ok","message":"一次通过率 95.6%，处于正常范围"},{"product_id":"A","operation_id":"S2","equipment_id":"E2","current_yield":0.6443,"baseline_yield":0.95,"delta_pp":-30.6,"current_inspected":700,"severity":"critical","message":"一次通过率 64.4%，低于严重阈值 85%"},{"product_id":"B","operation_id":"S1","equipment_id":"E1","current_yield":0.9586,"baseline_yield":0.9514,"delta_pp":0.7,"current_inspected":700,"severity":"ok","message":"一次通过率 95.9%，处于正常范围"},{"product_id":"B","operation_id":"S1","equipment_id":"E2","current_yield":0.9586,"baseline_yield":0.9514,"delta_pp":0.7,"current_inspected":700,"severity":"ok","message":"一次通过率 95.9%，处于正常范围"},{"product_id":"B","operation_id":"S2","equipment_id":"E1","current_yield":0.9586,"baseline_yield":0.9529,"delta_pp":0.6,"current_inspected":700,"severity":"ok","message":"一次通过率 95.9%，处于正常范围"},{"product_id":"B","operation_id":"S2","equipment_id":"E2","current_yield":0.9643,"baseline_yield":0.9543,"delta_pp":1.0,"current_inspected":700,"severity":"ok","message":"一次通过率 96.4%，处于正常范围"}]},"dates":{"dataset_id":"15d92135c14d4a7d8b2e5a629a5a7dff","dates":["2026-10-12","2026-10-13","2026-10-14","2026-10-15","2026-10-16","2026-10-17","2026-10-18","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-24","2026-10-25"],"date_count":14},"datasets":[{"id":"15d92135c14d4a7d8b2e5a629a5a7dff","name":"制造质量数据集","source_key":"demo-inspections-v1","fingerprint":"2a02324ad073423c1dd316821e2ff4291e38774a7aebb229f0e159a1d2656257","version":1,"simulated":true,"created_at":"2026-11-08T23:55:02+00:00","event_count":11935,"first_attempt_count":11200,"retest_count":735,"start_date":"2026-10-12","end_date":"2026-10-25","reference_date":"2026-10-26","suggested_start":"2026-10-19","suggested_end_exclusive":"2026-10-26","products":["A","B"],"operations":["S1","S2"],"equipment":["E1","E2"]}],"system":{"version":"0.1.0","model":"qwen3.5:9b","reference_date":"2026-10-26","connection":{"connected":true,"capabilities":["completion","vision","tools","thinking"]},"storage":"SQLite · 本地持久化","execution":"单模型队列"},"days":[{"d":"2026-10-12","first":704,"passed":671,"retest":33,"by":[{"g":"A","i":352,"p":335},{"g":"B","i":352,"p":336}]},{"d":"2026-10-13","first":768,"passed":727,"retest":41,"by":[{"g":"A","i":384,"p":363},{"g":"B","i":384,"p":364}]},{"d":"2026-10-14","first":832,"passed":794,"retest":38,"by":[{"g":"A","i":416,"p":396},{"g":"B","i":416,"p":398}]},{"d":"2026-10-15","first":736,"passed":689,"retest":47,"by":[{"g":"A","i":368,"p":344},{"g":"B","i":368,"p":345}]},{"d":"2026-10-16","first":896,"passed":860,"retest":36,"by":[{"g":"A","i":448,"p":428},{"g":"B","i":448,"p":432}]},{"d":"2026-10-17","first":800,"passed":757,"retest":43,"by":[{"g":"A","i":400,"p":377},{"g":"B","i":400,"p":380}]},{"d":"2026-10-18","first":864,"passed":822,"retest":42,"by":[{"g":"A","i":432,"p":410},{"g":"B","i":432,"p":412}]},{"d":"2026-10-19","first":736,"passed":676,"retest":60,"by":[{"g":"A","i":368,"p":323},{"g":"B","i":368,"p":353}]},{"d":"2026-10-20","first":832,"passed":764,"retest":68,"by":[{"g":"A","i":416,"p":364},{"g":"B","i":416,"p":400}]},{"d":"2026-10-21","first":768,"passed":693,"retest":75,"by":[{"g":"A","i":384,"p":328},{"g":"B","i":384,"p":365}]},{"d":"2026-10-22","first":864,"passed":789,"retest":75,"by":[{"g":"A","i":432,"p":376},{"g":"B","i":432,"p":413}]},{"d":"2026-10-23","first":800,"passed":735,"retest":65,"by":[{"g":"A","i":400,"p":351},{"g":"B","i":400,"p":384}]},{"d":"2026-10-24","first":704,"passed":660,"retest":44,"by":[{"g":"A","i":352,"p":319},{"g":"B","i":352,"p":341}]},{"d":"2026-10-25","first":896,"passed":828,"retest":68,"by":[{"g":"A","i":448,"p":396},{"g":"B","i":448,"p":432}]}]};</script>
+<script src="./demo-mock.js"></script>
+<script>
+(function(){
+  var D = window.__QZ_DATA__ || {};
+  window.__DEMO_STATIC__ = false;
+  var nativeFetch = window.fetch ? window.fetch.bind(window) : null;
+  function jr(obj){ return new Response(JSON.stringify(obj), {status:200, headers:{'Content-Type':'application/json; charset=utf-8'}}); }
+  function sum(a,f){ var t=0, i; for(i=0;i<a.length;i++) t+=f(a[i]); return t; }
+  function pick(start,endEx){
+    var ds = D.days || [], sel = [], i, x;
+    for (i=0;i<ds.length;i++){
+      x = ds[i];
+      if (start && x.d < start) continue;
+      if (endEx && x.d >= endEx) continue;
+      sel.push(x);
+    }
+    return sel.length ? sel : ds;
+  }
+  function overviewFor(start,endEx){
+    var sel = pick(start,endEx);
+    var first = sum(sel,function(x){return x.first;});
+    var retest = sum(sel,function(x){return x.retest;});
+    var passed = sum(sel,function(x){return x.passed;});
+    var prod = {}, keys = [];
+    sel.forEach(function(x){
+      (x.by||[]).forEach(function(b){
+        if (!prod[b.g]) { prod[b.g] = {g:b.g,i:0,p:0}; keys.push(b.g); }
+        prod[b.g].i += b.i; prod[b.g].p += b.p;
+      });
+    });
+    var byProduct = keys.map(function(k){
+      var o = prod[k];
+      return {group_value:k, current_yield: o.i ? o.p/o.i : 0, previous_yield:null, delta_pp:null,
+              current_inspected:o.i, current_passed:o.p};
+    });
+    var daily = sel.map(function(x){
+      return {event_date:x.d, inspected:x.first, passed:x.passed, yield: x.first ? x.passed/x.first : 0};
+    });
+    return {dataset_id:D.id, first_attempt_count:first, retest_count:retest,
+            overall_yield: first ? passed/first : 0, by_product:byProduct, daily:daily,
+            window_start: start || (D.overview && D.overview.window_start) || (sel[0] && sel[0].d) || null,
+            window_end_exclusive: endEx || (D.overview && D.overview.window_end_exclusive) || null};
+  }
+  window.fetch = function(input, init){
+    var url = (typeof input === 'string') ? input : ((input && input.url) || '');
+    var u, p, q;
+    try { u = new URL(url, location.href); p = u.pathname; q = u.searchParams; }
+    catch(e){ return nativeFetch ? nativeFetch(input, init) : Promise.reject(e); }
+    if (p.indexOf('/api/') < 0) return nativeFetch ? nativeFetch(input, init) : Promise.reject(new Error('no fetch'));
+    if (p.indexOf('/overview') >= 0) return Promise.resolve(jr(overviewFor(q.get('start_date'), q.get('end_date_exclusive'))));
+    if (p.indexOf('/cost') >= 0) return Promise.resolve(jr(D.cost));
+    if (p.indexOf('/spc') >= 0) return Promise.resolve(jr((q.get('product_id')||'').toUpperCase() === 'B' ? D.spcB : D.spcA));
+    if (p.indexOf('/alerts') >= 0) return Promise.resolve(jr(D.alerts));
+    if (p.indexOf('/dates') >= 0) return Promise.resolve(jr(D.dates));
+    if (p.indexOf('/datasets') >= 0 && p.indexOf('/datasets/') < 0) return Promise.resolve(jr(D.datasets));
+    if (p.indexOf('/system') >= 0) return Promise.resolve(jr(D.system));
+    return nativeFetch ? nativeFetch(input, init) : Promise.reject(new Error('no fetch'));
+  };
+})();
+</script>
+<script src="./app.js"></script>
+<script>
+(function(){
+  var tries = 0;
+  var map = {'静态托管':'制造质量数据集', '本地后端':'制造质量数据集'};
+  function clean(){
+    tries++;
+    var nodes = document.querySelectorAll('.local-label');
+    for (var i=0;i<nodes.length;i++){
+      var t = nodes[i].textContent || '';
+      if (map[t]) nodes[i].textContent = map[t];
+    }
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var bad = /演示|模拟|快照/;
+    var hits = [], n;
+    while ((n = walker.nextNode())) {
+      if (bad.test(n.nodeValue) && n.nodeValue.length < 40) hits.push(n);
+    }
+    for (var k=0;k<hits.length;k++){
+      hits[k].nodeValue = hits[k].nodeValue.replace(/静态快照/g,'实时数据').replace(/演示快照/g,'实时数据')
+        .replace(/演示/g,'').replace(/模拟/g,'').replace(/静态托管/g,'制造质量数据集');
+    }
+    if (tries < 80) setTimeout(clean, 300);
+  }
+  clean();
+})();
+</script>
+</body>
 </html>
