@@ -406,19 +406,30 @@
       var probe = new XMLHttpRequest();
       probe.open('GET', 'http://127.0.0.1:8501/api/health', true);
       probe.timeout = 1500;
+      // 必须带访问凭据：不带认证头的请求会被 401 挡在 CORS 之外，浏览器直接报网络错误
+      try {
+        probe.setRequestHeader('Authorization', 'Basic ' + btoa('admin:999999'));
+      } catch (e) {}
       probe.onload = function () {
-        // 401 说明访问门在线，同样视为可达
-        if (probe.status === 200 || probe.status === 401) {
+        if (probe.status === 200) {
           try {
             localStorage.setItem('qz-api-base', 'http://127.0.0.1:8501');
             localStorage.setItem('qz-api-auth', btoa('admin:999999'));
             localStorage.setItem('qz-demo-auth', 'ok');
           } catch (e) {}
           location.reload();
+        } else {
+          try {
+            sessionStorage.removeItem('__qz_probe');
+          } catch (e) {}
         }
       };
-      probe.onerror = function () {};
-      probe.ontimeout = function () {};
+      probe.onerror = function () {
+        try {
+          sessionStorage.removeItem('__qz_probe');
+        } catch (e) {}
+      };
+      probe.ontimeout = probe.onerror;
       probe.send();
     }
   } catch (e) {}
