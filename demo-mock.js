@@ -391,6 +391,38 @@
     return respond({ status: 'ok' });
   }
 
+  // ---------- 自举：本机后端在线时自动连上去 ----------
+  // 打开网址即连本机 127.0.0.1:8501 的真实后端（本机运行时），连不上则留在静态快照。
+  // sessionStorage 标记避免刷新循环；探测超时 1.5s，失败静默。
+  try {
+    var hasBase = '';
+    try {
+      hasBase = localStorage.getItem('qz-api-base') || '';
+    } catch (e) {
+      hasBase = '';
+    }
+    if (!hasBase && !sessionStorage.getItem('__qz_probe')) {
+      sessionStorage.setItem('__qz_probe', '1');
+      var probe = new XMLHttpRequest();
+      probe.open('GET', 'http://127.0.0.1:8501/api/health', true);
+      probe.timeout = 1500;
+      probe.onload = function () {
+        // 401 说明访问门在线，同样视为可达
+        if (probe.status === 200 || probe.status === 401) {
+          try {
+            localStorage.setItem('qz-api-base', 'http://127.0.0.1:8501');
+            localStorage.setItem('qz-api-auth', btoa('admin:999999'));
+            localStorage.setItem('qz-demo-auth', 'ok');
+          } catch (e) {}
+          location.reload();
+        }
+      };
+      probe.onerror = function () {};
+      probe.ontimeout = function () {};
+      probe.send();
+    }
+  } catch (e) {}
+
   // ---------- 安装拦截 ----------
   window.fetch = function (input, init) {
     var url = typeof input === 'string' ? input : (input && input.url) || '';
@@ -437,7 +469,7 @@
     }
     var el = document.createElement('div');
     el.id = 'demo-snapshot-badge';
-    el.textContent = remote ? '真实后端 · 实时计算' : '演示快照 · GitHub Pages';
+    el.textContent = remote ? '真实后端 · 实时计算' : '静态快照 · GitHub Pages';
     el.title = remote
       ? '数据来自 ' + remote + '（本机真实后端），点击可隐藏提示'
       : '当前为静态数据快照版本，点击可隐藏提示';
